@@ -1,0 +1,10 @@
+Package: read.dmdx
+Type: Package
+Title: A set of functions to read DMDX-related files
+Version: 0.1.0
+Author: Kazunaga Matsuki
+Maintainer: Kazunaga Matsuki <matsukk@mcmaster.ca>
+Description: A set of functions to read DMDX-related files.
+License: GPL
+LazyData: TRUE
+RoxygenNote: 5.0.1

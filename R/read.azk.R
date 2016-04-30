@@ -28,7 +28,7 @@
 #'  \item{item.order, order of the items}
 #'}
 #'
-#'
+#' @export
 #'
 read.azk <- function(file, acc = FALSE, item.order = FALSE, read.max = 20000, warn = FALSE)
 {

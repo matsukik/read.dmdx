@@ -7,6 +7,7 @@
 #' functions (e.g., readLines) will be muted.
 #'
 #' @return A character vector with each element containing stripped out texts form each line in the file.
+#' @export
 #'
 rtf2textvec <- function(file, warn = FALSE)
 {

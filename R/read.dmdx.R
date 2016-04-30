@@ -18,7 +18,7 @@
 #'   \item{itemdat (A data frame with each column corresponding to item number,
 #'   item from each frame marked by the divider /, and timing and other indicators.)}
 #' }
-#'
+#' @export
 
 read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, separator = FALSE)
 {

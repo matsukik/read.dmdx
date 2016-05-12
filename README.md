@@ -5,7 +5,22 @@ This parckage is at a very early stage of development, so **please use at your o
 
 ## Installation
 To install the package from GitHub, first install devtools and its dependencies. Then run 
+```
+devtools::install_github("matsukik/read.dmdx")
+```
 
-	devtools::install_github("matsukik/read.dmdx")
+## Examples
 
+To import a 'azk' data file:
+```
+library(read.dmdx)
+dat <- read.azk('LexicalDesicion_List1.azk')
+dim(dat)
+head(dat)
+```
 
+To import a 'rtf' item file:
+```
+items <- read.dmdx('LexicalDesision_List1.rtf')
+head(items$itemdat)
+```

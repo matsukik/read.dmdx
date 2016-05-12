@@ -14,7 +14,7 @@ devtools::install_github("matsukik/read.dmdx")
 
 ## Examples
 
-To import a 'azk' data file:
+To import an '.azk' data file:
 ```
 library(read.dmdx)
 dat <- read.azk('LexicalDesicion_List1.azk')
@@ -22,7 +22,7 @@ dim(dat)
 head(dat)
 ```
 
-To import a 'rtf' item file:
+To import an '.rtf' item file:
 ```
 items <- read.dmdx('LexicalDesision_List1.rtf')
 head(items$itemdat)

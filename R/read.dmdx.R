@@ -11,6 +11,7 @@
 #' @param warn logical. If \code{FALSE} (Default), messages form internally used
 #' functions (e.g., readLines) will be muted.
 #' @param separator logical. If \code{FALSE} (Default), frame separator '/' will be omitted from the output data.frame.
+#' @param encoding encoding to be used.
 #'
 #' @return A list containing:
 #' \itemize{
@@ -20,12 +21,15 @@
 #' }
 #' @export
 
-read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, separator = FALSE)
+read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, separator = FALSE, encoding = "unknown")
 {
-  lines <- readLines(file, warn = warn)
+  lines <- readLines(file, warn = warn, encoding = encoding)
   if(substring(lines[1], first = 1, last=5) == "{\\rtf")
   {
     lines <- rtf2textvec(file, warn = warn)
+  } else {
+    lines <- gsub("\t", " ", lines)
+    lines <- gsub("[\u201c\u201d]", "\"", lines)
   }
 
 
@@ -60,6 +64,7 @@ read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, sepa
   items <- lines[-c(1,sections, newlines, instloc)]
   .itemsplit <- function(x, separator = FALSE)
   {
+
     reg <- ifelse(separator, "[^ \"';]+|\"([^\"]*)\"|'([^']*)'|(<[^>]+>)", "[^ \"'/;]+|\"([^\"]*)\"|'([^']*)'|(<[^>]+>)")
     m <- gregexpr(reg, x)
     res <- regmatches(x, m)[[1]]

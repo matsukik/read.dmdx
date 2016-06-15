@@ -5,14 +5,15 @@
 #' @param file A name of the file
 #' @param warn logical. If \code{FALSE} (Default), messages form internally used
 #' functions (e.g., readLines) will be muted.
+#' @param encoding encoding to be used.
 #'
 #' @return A character vector with each element containing stripped out texts form each line in the file.
 #' @export
 #'
-rtf2textvec <- function(file, warn = FALSE)
+rtf2textvec <- function(file, warn = FALSE, encoding = "unknown")
 {
-  lines <- readLines(file, warn = warn)
-  lines <- gsub("[\\][\']9[34]", "\"", lines)
+  lines <- readLines(file, warn = warn, encoding = encoding)
+  lines <- gsub("(\\u822[01][\\])?[\']9[34]", "\"", lines)
   lines <- gsub("OLE_LINK1}", "", lines)
   lines <- gsub("[\\]tab", " ", lines)
   if(substring(lines[1], first = 1, last=5) != "{\\rtf") stop("'file' is not an RTF file.")

@@ -7,4 +7,5 @@ Maintainer: Kazunaga Matsuki <matsukk@mcmaster.ca>
 Description: A set of functions to read DMDX-related files.
 License: GPL
 LazyData: TRUE
+Imports: stringi, stats
 RoxygenNote: 5.0.1

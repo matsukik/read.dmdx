@@ -20,13 +20,15 @@
 #'   item from each frame marked by the divider /, and timing and other indicators.)}
 #' }
 #' @export
+#'
 
 read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, separator = FALSE, encoding = "unknown")
 {
   lines <- readLines(file, warn = warn, encoding = encoding)
+  #unicode <- (encoding == "UTF-8")
   if(substring(lines[1], first = 1, last=5) == "{\\rtf")
   {
-    lines <- rtf2textvec(file, warn = warn)
+    lines <- rtf2textvec(file, warn = warn, encoding = encoding)
   } else {
     lines <- gsub("\t", " ", lines)
     lines <- gsub("[\u201c\u201d]", "\"", lines)
@@ -68,11 +70,11 @@ read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, sepa
     reg <- ifelse(separator, "[^ \"';]+|\"([^\"]*)\"|'([^']*)'|(<[^>]+>)", "[^ \"'/;]+|\"([^\"]*)\"|'([^']*)'|(<[^>]+>)")
     m <- gregexpr(reg, x)
     res <- regmatches(x, m)[[1]]
-    gsub("[\"']", "", res)
+    return(gsub("[\"']", "", res))
   }
 
   itemlist <- lapply(items, .itemsplit, separator=separator)
-
+  itemlist <- lapply(itemlist, trimws)
   itemdat <- data.frame(do.call("rbind", itemlist), stringsAsFactors = FALSE)
   if(!missing(colnames)) colnames(itemdat) <- colnames
   if(CorrectAnswers){

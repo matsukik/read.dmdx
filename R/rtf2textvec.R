@@ -47,7 +47,7 @@ rtf2textvec <- function(file, warn = FALSE, encoding = "unknown")
     collapse <- ifelse(any(grepl("\\\\uc2", lines)), "", " ")
 
     lines <- gsub("\\\\uc2", "", lines)
-    #lines <- gsub("^([\\][\'][0-9a-z]+)+[ ]*", "", lines)
+    lines <- gsub("^([\\][\'][0-9a-z]+){2,}[ ]*", "", lines)
   } else {
     collapse <- ""
   }

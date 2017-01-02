@@ -36,7 +36,7 @@ read.dmdx <- function(file, colnames, CorrectAnswers = FALSE, warn = FALSE, sepa
 
 
   .parse_header <- function(x){
-    m <- gregexpr("\\<(\\w+)\\s([^\\>]+)\\>", x)
+    m <- gregexpr("\\<(\\w+)\\s[:quote]?([^\\>]+)\\>", x)
     parray <- regmatches(x, m)[[1]]
     parray <- gsub("(\\w+)\\s(.+)", "\\1=\\2",  parray)
     parray <- strsplit(parray, "=")

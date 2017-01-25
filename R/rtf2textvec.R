@@ -47,7 +47,7 @@ rtf2textvec <- function(file, warn = FALSE, encoding = "unknown")
     collapse <- ifelse(any(grepl("\\\\uc2", lines)), "", " ")
 
     lines <- gsub("\\\\uc2", "", lines)
-    lines <- gsub("^([\\][\'][0-9a-z]+){2,}[ ]*", "", lines)
+    lines <- gsub("^([\\][\'][0-9a-z]+){2,}[ ]?", "", lines)
   } else {
     collapse <- ""
   }
@@ -67,7 +67,7 @@ rtf2textvec <- function(file, warn = FALSE, encoding = "unknown")
     lp <- par.end[i]
     tmp <- res1[i] <- paste(lines[rp:lp], collapse = collapse)
     tmp <- gsub("[\\]tab[ ]*", "\t", tmp)
-    tmp <- gsub("[\\][^\\ '<>,.]+[ ]*", "", tmp)
+    tmp <- gsub("[\\][^\\ '<>,.]+[ ]?", "", tmp)
     tmp <- gsub("[{}]", "", tmp)
     tmp <- gsub("\t", " ", tmp)
     res[i] <- trimws(tmp)
